@@ -25,10 +25,10 @@ dotnet add package BlazorDevtools
 ```
 3. Run the app you will see every render of a component be outlined!
 
-*Nuget package page can be found [here](https://www.nuget.org/packages/BlazorWasmAntivirusProtection).*
+*Nuget package page can be found [here](https://www.nuget.org/packages/BlazorDevtools/).*
 
 ## Samples / Demo
-You can find a sample app using this package [here](https://blazor-antivirus-block.azurewebsites.net/). 
+<!-- You can find a sample app using this package [here](TODO).  -->
 
 ## Release Notes
 <details><summary>0.0.1</summary>
