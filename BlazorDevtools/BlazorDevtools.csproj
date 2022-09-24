@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+  <PropertyGroup>
+    <PackageId>BlazorDevtools</PackageId>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+	<PackageTags>blazor blazorwasm wasm development devtool</PackageTags>
+    <Authors>Nicholas Broström (Nickztar)</Authors>
+	<PackageProjectUrl>https://github.com/nickztar/BlazorDevtools</PackageProjectUrl>
+    <Description>A way to see when components rerender, just like the highlighting in React Devtools works.</Description>
+	<VersionSuffix>$(VersionSuffix)</VersionSuffix>
+	<Version>0.0.2</Version>
+	<Version Condition=" '$(VersionSuffix)' != '' ">$(Version)-$(VersionSuffix)</Version>
+  </PropertyGroup>
+
+
+  <ItemGroup>
+    <SupportedPlatform Include="browser" />
+  </ItemGroup>
+
+</Project>
