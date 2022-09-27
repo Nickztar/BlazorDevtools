@@ -200,7 +200,7 @@ function initialize() {
           for (let i = 0; i < updatedComponentsLength; i++) {
               const diff = batch.updatedComponentsEntry(updatedComponentsValues, i);
               const componentId = diffReader.componentId(diff);
-              const targetComponent = Blazor._internal.browserRenderers[browserRendererId].childComponentLocations[componentId]?.nextSibling;
+              const targetComponent = Blazor._internal.browserRenderers[browserRendererId].childComponentLocations[componentId]?.parentNode;
               updatedComponents.add(targetComponent);
           }
           traceUpdates(updatedComponents);

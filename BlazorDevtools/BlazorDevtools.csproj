@@ -1,22 +1,31 @@
 <Project Sdk="Microsoft.NET.Sdk.Razor">
 
-  <PropertyGroup>
-    <PackageId>BlazorDevtools</PackageId>
-    <TargetFramework>net6.0</TargetFramework>
-    <Nullable>enable</Nullable>
-    <ImplicitUsings>enable</ImplicitUsings>
-	<PackageTags>blazor blazorwasm wasm development devtool</PackageTags>
-    <Authors>Nicholas Broström (Nickztar)</Authors>
-	<PackageProjectUrl>https://github.com/nickztar/BlazorDevtools</PackageProjectUrl>
-    <Description>A way to see when components rerender, just like the highlighting in React Devtools works.</Description>
-	<VersionSuffix>$(VersionSuffix)</VersionSuffix>
-	<Version>0.0.1</Version>
-	<Version Condition=" '$(VersionSuffix)' != '' ">$(Version)-$(VersionSuffix)</Version>
-  </PropertyGroup>
+	<PropertyGroup>
+		<PackageId>BlazorDevtools</PackageId>
+		<TargetFramework>net6.0</TargetFramework>
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<PackageTags>blazor blazorwasm wasm development devtool</PackageTags>
+		<Authors>Nicholas Broström (Nickztar)</Authors>
+		<PackageProjectUrl>https://github.com/nickztar/BlazorDevtools</PackageProjectUrl>
+		<Description>A way to see when components rerender, just like the highlighting in React Devtools works.</Description>
+		<VersionSuffix>$(VersionSuffix)</VersionSuffix>
+		<Version>0.0.1</Version>
+		<Version Condition=" '$(VersionSuffix)' != '' ">$(Version)-$(VersionSuffix)</Version>
+	</PropertyGroup>
 
 
-  <ItemGroup>
-    <SupportedPlatform Include="browser" />
-  </ItemGroup>
+	<ItemGroup>
+		<SupportedPlatform Include="browser" />
+	</ItemGroup>
+
+	<Target Name="GetTasksOutputDlls" BeforeTargets="CoreCompile">
+		<MSBuild Projects="..\BlazorDevtools.Tasks\BlazorDevtools.Tasks.csproj" Targets="Publish;PublishItemsOutputGroup" Properties="Configuration=$(Configuration)">
+			<Output TaskParameter="TargetOutputs" ItemName="_TasksProjectOutputs" />
+		</MSBuild>
+		<ItemGroup>
+			<Content Include="@(_TasksProjectOutputs)" Condition="('$(Configuration)' == 'Release' And '%(_TasksProjectOutputs.Extension)' == '.dll') Or '$(Configuration)' == 'Debug' And ('%(_TasksProjectOutputs.Extension)' == '.dll' Or '%(_TasksProjectOutputs.Extension)' == '.pdb')" Pack="true" PackagePath="tasks\%(_TasksProjectOutputs.TargetPath)" KeepMetadata="Pack;PackagePath" />
+		</ItemGroup>
+	</Target>
 
 </Project>
