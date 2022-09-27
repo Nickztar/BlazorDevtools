@@ -19,8 +19,13 @@
 		<SupportedPlatform Include="browser" />
 	</ItemGroup>
 
+	<ItemGroup>
+		<None Update="build\**" Pack="true" PackagePath="%(Identity)" />
+		<Content Include="_._" Pack="true" PackagePath="lib\net6.0\_._" />
+	</ItemGroup>
+	
 	<Target Name="GetTasksOutputDlls" BeforeTargets="CoreCompile">
-		<MSBuild Projects="..\BlazorDevtools.Tasks\BlazorDevtools.Tasks.csproj" Targets="Publish;PublishItemsOutputGroup" Properties="Configuration=$(Configuration)">
+		<MSBuild Projects="..\BlazorDevtools.Tasks\BlazorDevtools.Tasks.csproj" Targets="AfterBuild" Properties="Configuration=$(Configuration)">
 			<Output TaskParameter="TargetOutputs" ItemName="_TasksProjectOutputs" />
 		</MSBuild>
 		<ItemGroup>
