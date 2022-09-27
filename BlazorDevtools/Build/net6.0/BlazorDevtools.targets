@@ -4,7 +4,6 @@
 
 	<!-- Runs in the published project -->
 	<Target Name="_UpdateBlazorScript" BeforeTargets="AfterBuild">
-		<Message Text="AFTER BUILD DEVTOOLS" Importance="high" />
 		<UpdateBlazorScript BuildDir="$(OutputPath)" DisableDevtools="$(DisableDevtools)"></UpdateBlazorScript>
 	</Target>
 

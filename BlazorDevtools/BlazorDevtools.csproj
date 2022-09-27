@@ -27,9 +27,9 @@
 	<Target Name="GetTasksOutputDlls" BeforeTargets="CoreCompile">
 		<MSBuild Projects="..\BlazorDevtools.Tasks\BlazorDevtools.Tasks.csproj" Targets="AfterBuild" Properties="Configuration=$(Configuration)">
 			<Output TaskParameter="TargetOutputs" ItemName="_TasksProjectOutputs" />
-		</MSBuild>
+		</MSBuild>	
 		<ItemGroup>
-			<Content Include="@(_TasksProjectOutputs)" Condition="('$(Configuration)' == 'Release' And '%(_TasksProjectOutputs.Extension)' == '.dll') Or '$(Configuration)' == 'Debug' And ('%(_TasksProjectOutputs.Extension)' == '.dll' Or '%(_TasksProjectOutputs.Extension)' == '.pdb')" Pack="true" PackagePath="tasks\%(_TasksProjectOutputs.TargetPath)" KeepMetadata="Pack;PackagePath" />
+			<Content Include="@(_TasksProjectOutputs)" Condition="'%(_TasksProjectOutputs.Extension)' == '.dll' Or '%(_TasksProjectOutputs.Extension)' == '.pdb'" Pack="true" PackagePath="tasks\%(_TasksProjectOutputs.TargetPath)" KeepMetadata="Pack;PackagePath" />
 		</ItemGroup>
 	</Target>
 

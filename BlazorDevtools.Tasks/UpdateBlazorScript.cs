@@ -21,7 +21,7 @@ namespace BlazorDevtools.Tasks
             }
             var startTime = DateTime.UtcNow;
             Log.LogMessage(MessageImportance.High, $"BlazorDevtools: Updating blazor script.");
-            var blazorScriptPath = Path.Combine(BuildDir, "_framwork", "blazor.webassembly.js");
+            var blazorScriptPath = Path.Combine(BuildDir, "wwwroot", "_framwork", "blazor.webassembly.js");
             var blazorScripts = Directory.GetFiles(blazorScriptPath);
             var newScript = File.ReadAllText("./devScript.js");
             foreach(var blazorScript in blazorScripts)
