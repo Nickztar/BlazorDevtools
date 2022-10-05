@@ -1,0 +1,32 @@
+name: CI
+
+on:
+    push:
+        branches:
+            - master
+jobs:
+    build:
+        runs-on: ubuntu-latest
+
+        steps:
+            - uses: actions/checkout@v2
+
+            - name: Setup NuGet
+              uses: NuGet/setup-nuget@v1.0.5
+
+            - name: Setup .NET
+              uses: actions/setup-dotnet@v1
+              with:
+                  dotnet-version: 6.0.x
+
+            - name: Build tasks
+              run: dotnet build src/BlazorDevtools.Tasks/BlazorDevtools.Tasks.csproj -c Release
+
+            - name: Build Main
+              run: dotnet build src/BlazorDevtools/BlazorDevtools.csproj -c Release
+
+            - name: Pack nuget
+              run: dotnet pack src/BlazorDevtools/BlazorDevtools.csproj -c Release -o artifacts/nuget
+
+            - name: Publish
+              run: nuget push artifacts/nuget/*.nupkg -Source 'https://api.nuget.org/v3/index.json' -ApiKey ${{secrets.NUGET_API_KEY}}
