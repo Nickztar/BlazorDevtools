@@ -25,7 +25,7 @@
 	</ItemGroup>
 	
 	<Target Name="GetTasksOutputDlls" BeforeTargets="CoreCompile">
-		<MSBuild Projects="..\BlazorDevtools.Tasks\BlazorDevtools.Tasks.csproj" Targets="AfterBuild" Properties="Configuration=$(Configuration)">
+		<MSBuild Projects="..\BlazorDevtools.Tasks\BlazorDevtools.Tasks.csproj" Targets="Publish;PublishItemsOutputGroup" Properties="Configuration=$(Configuration)">
 			<Output TaskParameter="TargetOutputs" ItemName="_TasksProjectOutputs" />
 		</MSBuild>	
 		<ItemGroup>
