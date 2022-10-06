@@ -6,27 +6,24 @@ on:
             - master
 jobs:
     build:
-        runs-on: ubuntu-latest
-
+        runs-on: ubuntu-18.04
+        name: Update NuGet package
         steps:
-            - uses: actions/checkout@v2
+            - name: Checkout repository
+              uses: actions/checkout@v1
 
-            - name: Setup NuGet
-              uses: NuGet/setup-nuget@v1.0.5
-
-            - name: Setup .NET
+            - name: Setup .NET Core @ Latest
               uses: actions/setup-dotnet@v1
               with:
-                  dotnet-version: 6.0.x
+                  source-url: https://nuget.pkg.github.com/<organization>/index.json
+              env:
+                  NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
-            - name: Build tasks
-              run: dotnet build src/BlazorDevtools.Tasks/BlazorDevtools.Tasks.csproj -c Release
+            - name: Build solution and generate NuGet package
+              run: |
+                  dotnet build ./src/BlazorDevtools.Tasks/BlazorDevtools.Tasks.csproj -c Release
+                  dotnet build ./src/BlazorDevtools/BlazorDevtools.csproj -c Release
+                  dotnet pack ./src/BlazorDevtools/BlazorDevtools.csproj -c Release -o artifacts/nuget
 
-            - name: Build Main
-              run: dotnet build src/BlazorDevtools/BlazorDevtools.csproj -c Release
-
-            - name: Pack nuget
-              run: dotnet pack src/BlazorDevtools/BlazorDevtools.csproj -c Release -o artifacts/nuget
-
-            - name: Publish
-              run: nuget push artifacts/nuget/*.nupkg -Source 'https://api.nuget.org/v3/index.json' -ApiKey ${{secrets.NUGET_API_KEY}}
+            - name: Push generated package to GitHub registry
+              run: dotnet nuget push ./artifacts/nuget*.nupkg --skip-duplicate --no-symbols true --source https://api.nuget.org/v3/index.json --api-key ${{secrets.NUGET_API_KEY}}
