@@ -20,10 +20,8 @@ jobs:
                   NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
             - name: Build solution and generate NuGet package
-              run: |
-                  dotnet build ./src/BlazorDevtools.Tasks/BlazorDevtools.Tasks.csproj -c Release
-                  dotnet build ./src/BlazorDevtools/BlazorDevtools.csproj -c Release
-                  dotnet pack ./src/BlazorDevtools/BlazorDevtools.csproj -c Release -o ./artifacts/nuget
+              shell: pwsh
+              run: ./Scripts/build.ps1
 
             - name: Push generated package to GitHub registry
               run: dotnet nuget push artifacts/nuget/*.nupkg --skip-duplicate --no-symbols true --source https://api.nuget.org/v3/index.json --api-key ${{secrets.NUGET_API_KEY}}

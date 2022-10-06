@@ -10,7 +10,7 @@
 		<PackageProjectUrl>https://github.com/nickztar/BlazorDevtools</PackageProjectUrl>
 		<Description>A way to see when components rerender, just like the highlighting in React Devtools works.</Description>
 		<VersionSuffix>$(VersionSuffix)</VersionSuffix>
-		<Version>0.0.1</Version>
+		<Version>0.0.2</Version>
 		<Version Condition=" '$(VersionSuffix)' != '' ">$(Version)-$(VersionSuffix)</Version>
 	</PropertyGroup>
 
@@ -23,11 +23,11 @@
 		<None Update="build\**" Pack="true" PackagePath="%(Identity)" />
 		<Content Include="_._" Pack="true" PackagePath="lib\net6.0\_._" />
 	</ItemGroup>
-	
+
 	<Target Name="GetTasksOutputDlls" BeforeTargets="CoreCompile">
 		<MSBuild Projects="..\BlazorDevtools.Tasks\BlazorDevtools.Tasks.csproj" Targets="Publish;PublishItemsOutputGroup" Properties="Configuration=$(Configuration)">
 			<Output TaskParameter="TargetOutputs" ItemName="_TasksProjectOutputs" />
-		</MSBuild>	
+		</MSBuild>
 		<ItemGroup>
 			<Content Include="@(_TasksProjectOutputs)" Condition="'%(_TasksProjectOutputs.Extension)' == '.dll' Or '%(_TasksProjectOutputs.Extension)' == '.pdb'" Pack="true" PackagePath="tasks\%(_TasksProjectOutputs.TargetPath)" KeepMetadata="Pack;PackagePath" />
 		</ItemGroup>
