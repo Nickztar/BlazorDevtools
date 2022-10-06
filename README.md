@@ -17,21 +17,10 @@ This package just provides a new webassembly file to use:
 ```
 dotnet add package BlazorDevtools
 ``` 
-2. Replace the default blazor webassembly javascript file:
-
-```razor
-<!-- <script src="_framework/blazor.webassembly.js"></script> -->
-<script src="_content/BlazorDevtools/devtools.webassembly.js"></script>
-```
-3. Run the app you will see every render of a component be outlined!
+2. That's it. Run the app you will see every render of a component be outlined!
 
 *Nuget package page can be found [here](https://www.nuget.org/packages/BlazorDevtools/).*
 
 ## Samples / Demo
+TODO!
 <!-- You can find a sample app using this package [here](TODO).  -->
-
-## Release Notes
-<details><summary>0.0.1</summary>
-    
->- Initial release with trace highlighting.
-</details>
