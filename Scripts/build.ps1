@@ -36,12 +36,12 @@ Write-Host "=========="
 Write-Host "Version suffix: $VersionSuffix"
 
 Write-Message "Building ..."
-dotnet build ../BlazorDevtools.Tasks/BlazorDevtools.Tasks.csproj -c Release
-dotnet build ../BlazorDevtools/BlazorDevtools.csproj -c Release /p:VersionSuffix="$VersionSuffix"
+dotnet build ../src/BlazorDevtools.Tasks/BlazorDevtools.Tasks.csproj -c Release
+dotnet build ../src/BlazorDevtools/BlazorDevtools.csproj -c Release /p:VersionSuffix="$VersionSuffix"
 Confirm-PreviousCommand
 
 Write-Message "Creating nuget package ..."
-dotnet pack ../BlazorDevtools/BlazorDevtools.csproj -c Release /p:VersionSuffix="$VersionSuffix" -o ../artifacts/nuget
+dotnet pack ../src/BlazorDevtools/BlazorDevtools.csproj -c Release /p:VersionSuffix="$VersionSuffix" -o ../artifacts/nuget
 Confirm-PreviousCommand
 
 Write-Message "Build completed successfully"
