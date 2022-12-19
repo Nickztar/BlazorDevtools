@@ -1,0 +1,19 @@
+{
+  "manifest_version": 3,
+  "name": "Blazor DevTools",
+  "version": "1.0",
+  "devtools_page": "devtools.html",
+  "description": "Browser DevTools extension for debugging Blazor WebAssembly applications.",
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'"
+  },
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "icons": {
+    "16": "images/icon-16.png",
+    "32": "images/icon-32.png",
+    "48": "images/icon-48.png",
+    "128": "images/icon-128.png"
+  }
+}
