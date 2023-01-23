@@ -2,7 +2,7 @@
 
 	<PropertyGroup>
 		<PackageId>BlazorDevtools</PackageId>
-		<TargetFramework>net6.0;net7.0</TargetFramework>
+		<TargetFrameworks>net6.0;net7.0</TargetFrameworks>
 		<Nullable>enable</Nullable>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<PackageTags>blazor blazorwasm wasm development devtool</PackageTags>
