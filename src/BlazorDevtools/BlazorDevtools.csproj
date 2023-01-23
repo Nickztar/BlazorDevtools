@@ -2,7 +2,7 @@
 
 	<PropertyGroup>
 		<PackageId>BlazorDevtools</PackageId>
-		<TargetFramework>net6.0</TargetFramework>
+		<TargetFramework>net6.0;net7.0</TargetFramework>
 		<Nullable>enable</Nullable>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<PackageTags>blazor blazorwasm wasm development devtool</PackageTags>
@@ -22,6 +22,7 @@
 	<ItemGroup>
 		<None Update="build\**" Pack="true" PackagePath="%(Identity)" />
 		<Content Include="_._" Pack="true" PackagePath="lib\net6.0\_._" />
+		<Content Include="_._" Pack="true" PackagePath="lib\net7.0\_._" />
 	</ItemGroup>
 
 	<Target Name="GetTasksOutputDlls" BeforeTargets="CoreCompile">
