@@ -2,7 +2,7 @@
 
 	<PropertyGroup>
 		<PackageId>BlazorDevtools</PackageId>
-		<TargetFrameworks>net6.0;net7.0</TargetFrameworks>
+		<TargetFramework>net6.0</TargetFramework>
 		<Nullable>enable</Nullable>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<PackageTags>blazor blazorwasm wasm development devtool</PackageTags>
@@ -10,7 +10,7 @@
 		<PackageProjectUrl>https://github.com/nickztar/BlazorDevtools</PackageProjectUrl>
 		<Description>A way to see when components rerender, just like the highlighting in React Devtools works.</Description>
 		<VersionSuffix>$(VersionSuffix)</VersionSuffix>
-		<Version>0.0.2</Version>
+		<Version>0.0.3</Version>
 		<Version Condition=" '$(VersionSuffix)' != '' ">$(Version)-$(VersionSuffix)</Version>
 	</PropertyGroup>
 
@@ -22,7 +22,6 @@
 	<ItemGroup>
 		<None Update="build\**" Pack="true" PackagePath="%(Identity)" />
 		<Content Include="_._" Pack="true" PackagePath="lib\net6.0\_._" />
-		<Content Include="_._" Pack="true" PackagePath="lib\net7.0\_._" />
 	</ItemGroup>
 
 	<Target Name="GetTasksOutputDlls" BeforeTargets="CoreCompile">
