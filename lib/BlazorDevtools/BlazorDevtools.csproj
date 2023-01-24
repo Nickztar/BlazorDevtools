@@ -10,7 +10,7 @@
 		<PackageProjectUrl>https://github.com/nickztar/BlazorDevtools</PackageProjectUrl>
 		<Description>A way to see when components rerender, just like the highlighting in React Devtools works.</Description>
 		<VersionSuffix>$(VersionSuffix)</VersionSuffix>
-		<Version>0.0.3</Version>
+		<Version>0.0.4</Version>
 		<Version Condition=" '$(VersionSuffix)' != '' ">$(Version)-$(VersionSuffix)</Version>
 	</PropertyGroup>
 
