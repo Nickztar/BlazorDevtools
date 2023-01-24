@@ -1,10 +1,10 @@
 ﻿<Project>
 	<UsingTask TaskName="BlazorDevtools.Tasks.UpdateBlazorScript"
-               AssemblyFile="$(MSBuildThisProjectFileDirectory)\..\..\tasks\BlazorDevtools.Tasks.dll" />
+               AssemblyFile="$(MSBuildThisProjectFileDirectory)..\..\tasks\BlazorDevtools.Tasks.dll" />
 
 	<!-- Runs in the published project -->
 	<Target Name="_UpdateBlazorScript" AfterTargets="Build">
-		<UpdateBlazorScript BuildDir="$(OutputPath)" DisableDevtools="$(DisableDevtools)"></UpdateBlazorScript>
+		<UpdateBlazorScript BuildDir="$(OutputPath)" Version="$(TargetFrameworkVersion)" DisableDevtools="$(DisableDevtools)"></UpdateBlazorScript>
 	</Target>
 
 </Project>

@@ -29,7 +29,7 @@
 			<Output TaskParameter="TargetOutputs" ItemName="_TasksProjectOutputs" />
 		</MSBuild>
 		<ItemGroup>
-			<Content Include="@(_TasksProjectOutputs)" Condition="'%(_TasksProjectOutputs.Extension)' == '.dll' Or '%(_TasksProjectOutputs.Extension)' == '.pdb'" Pack="true" PackagePath="tasks\%(_TasksProjectOutputs.TargetPath)" KeepMetadata="Pack;PackagePath" />
+			<Content Include="@(_TasksProjectOutputs)" Condition="('%(_TasksProjectOutputs.Extension)' == '.dll' Or '%(_TasksProjectOutputs.Extension)' == '.dylib' Or '%(_TasksProjectOutputs.Extension)' == '.so' Or ('$(Configuration)' == 'Debug' And '%(_TasksProjectOutputs.Extension)' == '.pdb'))" Pack="true" PackagePath="tasks\%(_TasksProjectOutputs.TargetPath)" KeepMetadata="Pack;PackagePath" />
 		</ItemGroup>
 	</Target>
 
